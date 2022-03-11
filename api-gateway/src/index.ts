@@ -1,1 +1,3 @@
-console.log("api gateway");
+import startServer from "./server/startServer";
+
+startServer();
