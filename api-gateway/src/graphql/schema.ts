@@ -15,10 +15,18 @@ const schema = gql`
     user: User!
   }
 
-  type Query {
+  type Mutation {
+    createUser(password: String!, username: String!): User!
+    createUserSession(password: String!, username: String!): UserSession!
+    deleteUserSession(me: Boolean!): Boolean!
+  }
 
+  type Query {
     userSession(me: Boolean!): UserSession
   }
 `;
+
+// ! in graphql means data is non nullable. 
+// by default data is nullable.
 
 export default schema;
