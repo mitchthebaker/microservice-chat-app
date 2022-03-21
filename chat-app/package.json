@@ -1,0 +1,9 @@
+{
+  "name": "microservice-chat-app-chat-app",
+  "version": "1.0.0",
+  "main": "src/index.html",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
