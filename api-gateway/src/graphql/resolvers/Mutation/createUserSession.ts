@@ -8,8 +8,7 @@ interface Args {
 
 const createUserSessionResolver = async (obj: any, { password, username }: Args, context: ResolverContext) => {
   const userSession = await UsersService.createUserSession({ password, username });
-
-  context.res.cookie("userSessionId", userSession.id, { httpOnly: true });
+  context.res.cookie("userSessionId", userSession.id, { httpOnly: true});
 
   return userSession;
 };

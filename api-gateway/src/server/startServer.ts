@@ -1,4 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground
+} from "apollo-server-core";
 import express, { Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -17,16 +20,13 @@ const startServer = async () => {
     context: (a) => a,
     formatError: formatGraphQLErrors,
     resolvers,
-    typeDefs: schema
+    typeDefs: schema,
+    plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground
+    ]
   });
 
   const app = express();
-
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    res.header('Access-Control-Allow-Origin', 'https://studio.apollographql.com');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-  });
 
   app.use(cookieParser());
 

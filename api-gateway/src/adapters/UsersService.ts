@@ -28,7 +28,6 @@ class UsersService {
   }
 
   static async deleteUserSession({ sessionId }: { sessionId: string }) {
-    console.log(sessionId);
     const body = await got.delete(`${USERS_SERVICE_URI}/sessions/${sessionId}`).json();
     return body;
   }
@@ -40,9 +39,7 @@ class UsersService {
   }
 
   static async fetchUserSession({ sessionId }: { sessionId: string }): Promise<UserSession | null> {
-    console.log(sessionId);
     const body = await got.get(`${USERS_SERVICE_URI}/sessions/${sessionId}`).json();
-    console.log("body", body);
     if(!body) return null;
     return <UserSession>body;
   }
