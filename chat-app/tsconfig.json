@@ -5,9 +5,10 @@
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "module": "commonjs",
-      "jsx": "react",
+      "jsx": "react-jsx",
       "paths": {
-          "#root/*": ["./src/*"]
+          "#root/*": ["./src/*"],
+          "#utils/*": ["./src/utils/*"]
       },
       "skipLibCheck": true,
       "strict": true,

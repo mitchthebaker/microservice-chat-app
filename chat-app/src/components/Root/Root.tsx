@@ -7,6 +7,8 @@ import styled from "styled-components";
 import apolloClient from "#root/api/apolloClient";
 import userSessionAtom from "#root/recoil/atoms/userSession";
 
+import Initialized from "./Initialized/Initialized";
+
 const SpinnerWrapper = styled.div`
   left: 50%;
   top: 50%;
@@ -26,7 +28,7 @@ const query = gql`
 
 const Root = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [userSession, setUserSession] = useRecoilState(userSessionAtom);
+  const [, setUserSession] = useRecoilState(userSessionAtom);
 
   useEffect(() => {
     apolloClient.query({ query }).then((res) => {
@@ -41,7 +43,7 @@ const Root = () => {
       <Spinner />
     </SpinnerWrapper>
   ) : (
-    <pre>{JSON.stringify(userSession, null, 2)}</pre>
+    <Initialized />
   );
 };
 
