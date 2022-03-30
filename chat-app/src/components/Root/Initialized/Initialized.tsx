@@ -46,4 +46,5 @@ const Initialized = () => {
     </Routes>
   );
 };
+
 export default Initialized;
