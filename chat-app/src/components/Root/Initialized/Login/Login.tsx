@@ -54,6 +54,7 @@ const mutation = gql`
 const Login = () => {
   const { 
     control,
+    formState,
     handleSubmit, 
   } = useForm<FormData>();
   const [createUserSession] = useMutation(mutation);
@@ -62,8 +63,9 @@ const Login = () => {
 
   const onSubmit = async ({ username, password }: FormData) => {
     try {
-    const result = await createUserSession({ variables: { password, username}});
-    console.log(result);
+      const result = await createUserSession({ variables: { password, username}});
+    
+      if(result.data.createUserSession) setUserSession(result.data.createUserSession);
     } catch(err) {
       toaster.show({ intent: Intent.DANGER, message: "Something went wrong! Please try again." });
     }
@@ -82,7 +84,9 @@ const Login = () => {
                 field: { onChange, onBlur, ref, value },
               }) => (
                 <InputGroup 
+                  autoFocus
                   defaultValue={value}
+                  disabled={formState.isSubmitting}
                   id={generateId("username")} 
                   inputRef={ref}
                   large 
@@ -101,6 +105,7 @@ const Login = () => {
               }) => (
                 <InputGroup 
                   defaultValue={value}
+                  disabled={formState.isSubmitting}
                   id={generateId("password")}
                   inputRef={ref}
                   large
@@ -110,7 +115,7 @@ const Login = () => {
               )}
             />
           </LargeFormGroup>
-          <Button intent={Intent.PRIMARY} large type="submit">
+          <Button loading={formState.isSubmitting} intent={Intent.PRIMARY} large type="submit">
             Login
           </Button>
         </Card>

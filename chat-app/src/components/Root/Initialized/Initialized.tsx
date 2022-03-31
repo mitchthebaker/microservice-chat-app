@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import userSessionAtom from "#root/recoil/atoms/userSession";
 import PrivateRoute from "#root/utils/components/routing/PrivateRoute";
 
-import Home from "./Home"
+import Feed from "./Feed"
 import Login from "./Login";
 import Main from "./Main";
 
@@ -20,8 +20,8 @@ const Initialized = () => {
       <Route 
         element={
           <PrivateRoute
-            allowVisit={authorized(userSession)} 
-            redirectTo="/home"
+            allowVisit={!userSession} 
+            redirectTo="/feed"
           >
             <Login />
           </PrivateRoute> 
@@ -31,8 +31,8 @@ const Initialized = () => {
       <Route 
         element={
           <PrivateRoute
-            allowVisit={authorized(userSession)} 
-            redirectTo="/home"
+            allowVisit={!userSession} 
+            redirectTo="/login"
           >
             <Main />
           </PrivateRoute> 
@@ -40,8 +40,15 @@ const Initialized = () => {
         path="/" 
       />
       <Route 
-        element={<Home />}
-        path="/home"
+        element={
+          <PrivateRoute
+            allowVisit={userSession}
+            redirectTo="/"
+          >
+            <Feed />
+          </PrivateRoute>
+        }
+        path="/feed"
       />
     </Routes>
   );

@@ -1,6 +1,4 @@
-import { ComponentType, FC, ReactElement } from "react";
-import { Navigate, Routes, Route, RouteProps } from "react-router-dom";
-import { RouteComponentProps, useLocation } from "@reach/router";
+import { Navigate } from "react-router-dom";
 
 interface Props {
   children: JSX.Element;
