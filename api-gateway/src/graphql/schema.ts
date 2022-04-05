@@ -13,14 +13,23 @@ const schema = gql`
     user: User!
   }
 
+  type Chat {
+    id: ID!
+    createdAt: Date!
+    message: String!
+    username: String!
+  }
+
   type Mutation {
     createUser(password: String!, username: String!): User!
     createUserSession(password: String!, username: String!): UserSession!
     deleteUserSession(me: Boolean!): Boolean!
+    createChat(username: String!, message: String!): Chat!
   }
 
   type Query {
     userSession(me: Boolean!): UserSession
+    getChats(username: String!): [Chat!]!
   }
 `;
 
