@@ -9,5 +9,8 @@ export default class Chat {
   createdAt: string;
 
   @Column()
+  message: string;
+
+  @Column()
   username: string;
 }
