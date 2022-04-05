@@ -88,9 +88,7 @@ const setupRoutes = (app: Express) => {
   });
 
   app.post("/users", async (req, res, next) => {
-    if(!req.body.username || !req.body.password) {
-      return next(new Error("Invalid body"));
-    }
+    if(!req.body.username || !req.body.password) return next(new Error("Invalid body"));
 
     try {
       const newUser = {
